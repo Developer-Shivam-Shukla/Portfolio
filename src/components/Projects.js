@@ -18,18 +18,21 @@ export const Projects = () => {
       description:
         "A simple task management application that helps users organize, track, and manage daily tasks efficiently through an intuitive and user-friendly interface",
       imgUrl: projImg1,
+      url:"https://todo-app-tau-lyart-32.vercel.app/",
     },
     {
       title: "Weather-App",
       description:
         "A real-time weather forecasting application that provides current weather conditions and location-based forecasts through an intuitive and responsive interface.",
       imgUrl: projImg2,
+      url:"https://weather-app-eight-xi-52.vercel.app/",
     },
     {
       title: "Portfolio",
       description:
         "A responsive and modern portfolio website built with React.js to showcase my skills, projects, certifications, and professional journey in technology and engineering.",
       imgUrl: projImg3,
+      url:"https://portfolio-psi-three-78.vercel.app/",
     },
   ];
 

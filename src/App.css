@@ -473,6 +473,24 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   font-size: 15px;
   letter-spacing: 0.8px;
 }
+
+.view-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 20px;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.view-btn:hover {
+  background: #ddd;
+  cursor: pointer;
+}
+
 .background-image-right {
   top: 20%;
   position: absolute;
