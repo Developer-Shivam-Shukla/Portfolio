@@ -95,7 +95,7 @@ nav.navbar.scrolled {
   background-color: #121212;
 }
 nav.navbar a.navbar-brand {
-    width: 9%;
+    width: 5%;
 }
 nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
@@ -321,39 +321,172 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   padding: 0 0 50px 0;
   position: relative;
 }
+
 .skill-bx {
   background: #151515;
   border-radius: 64px;
   text-align: center;
   padding: 60px 50px;
   margin-top: -60px;
+  overflow: hidden; /* Important */
 }
+
 .skill h2 {
-	font-size: 45px;
-	font-weight: 700;
+  font-size: 45px;
+  font-weight: 700;
 }
+
 .skill p {
-    color: #B8B8B8;
-    font-size: 18px;
-    letter-spacing: 0.8px;
-    line-height: 1.5em;
-    margin: 14px 0 75px 0;
+  color: #B8B8B8;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  margin: 14px 0 60px 0;
 }
-.skill-slider {
-  width: 80%;
-  margin: 0 auto;
-  position: relative;
-}
-.skill-slider .item img {
-  width: 50%;
-  margin: 0 auto 15px auto;
-}
+
 .background-image-left {
   top: 28%;
   position: absolute;
   bottom: 0;
   width: 40%;
   z-index: -4;
+}
+
+/* =======================
+      MARQUEE SECTION
+======================= */
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  margin: 25px 0;
+  position: relative;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.reverse .marquee-content {
+  animation: marqueeReverse 25s linear infinite;
+}
+
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+/* Skill Badge */
+
+.skill-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: fit-content;
+
+  padding: 14px 24px;
+  margin-right: 18px;
+
+  border-radius: 50px;
+
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+
+  background: rgba(255,255,255,0.05);
+
+  border: 1px solid rgba(170,54,124,.6);
+
+  backdrop-filter: blur(10px);
+
+  transition: all .35s ease;
+}
+
+.skill-pill:hover {
+  transform: translateY(-6px) scale(1.05);
+
+  background: linear-gradient(
+      90deg,
+      #AA367C,
+      #4A2FBD
+  );
+
+  box-shadow: 0 0 25px rgba(170,54,124,.55);
+
+  cursor: pointer;
+}
+
+/* Animations */
+
+@keyframes marquee {
+
+  from{
+    transform: translateX(0);
+  }
+
+  to{
+    transform: translateX(-50%);
+  }
+
+}
+
+@keyframes marqueeReverse {
+
+  from{
+    transform: translateX(-50%);
+  }
+
+  to{
+    transform: translateX(0);
+  }
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+  .skill-bx{
+    padding:40px 20px;
+  }
+
+  .skill h2{
+    font-size:34px;
+  }
+
+  .skill p{
+    font-size:16px;
+    margin-bottom:40px;
+  }
+
+  .skill-pill{
+    padding:10px 18px;
+    font-size:15px;
+  }
+
+}
+
+.marquee::before,
+.marquee::after{
+    content:"";
+    position:absolute;
+    top:0;
+    width:120px;
+    height:100%;
+    z-index:2;
+}
+
+.marquee::before{
+    left:0;
+    background:linear-gradient(to right,#151515,transparent);
+}
+
+.marquee::after{
+    right:0;
+    background:linear-gradient(to left,#151515,transparent);
 }
 
 /************ Projects Css ************/

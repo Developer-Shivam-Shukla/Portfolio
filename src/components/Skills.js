@@ -1,32 +1,30 @@
-import meter1 from "../assets/img/meter1.svg";
-import meter2 from "../assets/img/meter2.svg";
-import meter3 from "../assets/img/meter3.svg";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import arrow1 from "../assets/img/arrow1.svg";
-import arrow2 from "../assets/img/arrow2.svg";
 import colorSharp from "../assets/img/color-sharp.png";
 
+
 export const Skills = () => {
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
+  const row1 = [
+    "⚛ React",
+    "🟢 Node.js",
+    "🚀 Express.js",
+    "🍃 MongoDB",
+    "🎨 Tailwind CSS",
+    "🔐 JWT",
+    "☁ Cloudinary",
+    "🐙 Git",
+    "📮 Postman",
+  ];
+
+  const row2 = [
+    "☕ Java",
+    "🐍 Python",
+    "💻 DSA",
+    "📡 ESP32",
+    "🤖 Arduino",
+    "🌐 REST APIs",
+    "⚡ JavaScript",
+    "📱 Responsive Design",
+    "📝 OCR",
+  ];
 
   return (
     <section className="skill" id="skills">
@@ -35,40 +33,46 @@ export const Skills = () => {
           <div className="col-12">
             <div className="skill-bx wow zoomIn">
               <h2>Technical Expertise</h2>
+
               <p>
                 I am an Electronics and Communication Engineering student
                 passionate about software development and emerging technologies.
-                <br /> My interests span full-stack web development, IoT
-                solutions, allowing me to design and develop technology-driven
-                projects.
+                <br />
+                My interests span full-stack web development and IoT solutions,
+                allowing me to design and develop technology-driven projects.
               </p>
-              <Carousel
-                responsive={responsive}
-                infinite={true}
-                className="owl-carousel owl-theme skill-slider"
-              >
-                <div className="item">
-                  <img src={meter1} alt="java" />
-                  <h5>Web Development</h5>
+
+              {/* First Row */}
+              <div className="marquee">
+                <div className="marquee-content">
+                  {[...row1, ...row1].map((skill, index) => (
+                    <span className="skill-pill" key={index}>
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-                <div className="item">
-                  <img src={meter2} alt="photo" />
-                  <h5>Graphic Design</h5>
+              </div>
+
+              {/* Second Row */}
+              <div className="marquee reverse">
+                <div className="marquee-content">
+                  {[...row2, ...row2].map((skill, index) => (
+                    <span className="skill-pill" key={index}>
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-                <div className="item">
-                  <img src={meter3} alt="HTML" />
-                  <h5>DSA in JAVA</h5>
-                </div>
-                <div className="item">
-                  <img src={meter1} alt="react" />
-                  <h5>React.js</h5>
-                </div>
-              </Carousel>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <img className="background-image-left" src={colorSharp} alt="bg" />
+
+      <img
+        className="background-image-left"
+        src={colorSharp}
+        alt="background"
+      />
     </section>
   );
 };
