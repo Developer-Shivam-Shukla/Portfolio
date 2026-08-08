@@ -5,51 +5,46 @@ import { ArrowRightCircle } from "react-bootstrap-icons";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 
+const toRotate = ["Web Developer", "Problem Solver", "AI Enthusiast"];
+
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState("");
-  const [delta, setDelta] = useState(300 - Math.random() * 100);
-  const [index, setIndex] = useState(1);
-  const toRotate = ["Web Developer", "Problem Solver", "AI Enthusiast"];
   const period = 2000;
 
   useEffect(() => {
-    let ticker = setInterval(() => {
-      tick();
-    }, delta);
+    const currentText = toRotate[loopNum % toRotate.length];
 
-    return () => {
-      clearInterval(ticker);
-    };
-  }, [text]);
+    let timeout;
 
-  const tick = () => {
-    let i = loopNum % toRotate.length;
-    let fullText = toRotate[i];
-    let updatedText = isDeleting
-      ? fullText.substring(0, text.length - 1)
-      : fullText.substring(0, text.length + 1);
-
-    setText(updatedText);
-
-    if (isDeleting) {
-      setDelta((prevDelta) => prevDelta / 2);
-    }
-
-    if (!isDeleting && updatedText === fullText) {
-      setIsDeleting(true);
-      setIndex((prevIndex) => prevIndex - 1);
-      setDelta(period);
-    } else if (isDeleting && updatedText === "") {
-      setIsDeleting(false);
-      setLoopNum(loopNum + 1);
-      setIndex(1);
-      setDelta(500);
+    if (!isDeleting && text === currentText) {
+      // Pause after finishing the word
+      timeout = setTimeout(() => {
+        setIsDeleting(true);
+      }, period);
+    } else if (isDeleting && text === "") {
+      // Pause before starting next word
+      timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setLoopNum((prev) => prev + 1);
+      }, 500);
     } else {
-      setIndex((prevIndex) => prevIndex + 1);
+      // Typing / deleting
+      timeout = setTimeout(
+        () => {
+          if (isDeleting) {
+            setText(currentText.substring(0, text.length - 1));
+          } else {
+            setText(currentText.substring(0, text.length + 1));
+          }
+        },
+        isDeleting ? 90 : 150,
+      );
     }
-  };
+
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, loopNum]);
 
   return (
     <section className="banner" id="home">
@@ -88,11 +83,7 @@ export const Banner = () => {
                   <button onClick={() => console.log("connect")}>
                     Let’s Connect <ArrowRightCircle size={25} />
                   </button>
-                  <a
-                    href="/resume.pdf"
-                    download
-                    className="resume-btn"
-                  >
+                  <a href="/resume.pdf" download className="resume-btn">
                     Download Resume
                   </a>
                 </div>
